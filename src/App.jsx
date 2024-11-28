@@ -26,18 +26,16 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Multi Counter</h1>
+    <>
+      <h1>멀티 카운터</h1>
       <CounterList
         counters={counters}
         onIncrease={increase}
         onDecrease={decrease}
       />
-      <button onClick={addCounter} style={{ marginTop: "20px" }}>
-        Add Counter
-      </button>
+      <button onClick={addCounter}> 카운터 추가 </button>
       <Total counters={counters} />
-    </div>
+    </>
   );
 }
 
