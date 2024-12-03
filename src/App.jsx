@@ -1,7 +1,7 @@
 import { useState } from "react";
-import CounterList from "./CounterList";
-import Total from "./Total";
-import './App.css';
+import CounterList from "./component/CounterList";
+import Total from "./component/Total";
+import './css/App.css';
 
 function App() {
   // const [counters, setCounters] = useState([0, 0, 0]); // 카운터 상태 배열
