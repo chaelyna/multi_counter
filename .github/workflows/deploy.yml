@@ -5,6 +5,7 @@ on:
       branches: [ main ] # main 브랜치에 push될 때 실행
   pull_request:
       branches: [ main ]
+      
 # 전역 권한 설정
 permissions:
   contents: read
