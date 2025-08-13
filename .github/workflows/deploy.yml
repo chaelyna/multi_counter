@@ -1,60 +1,43 @@
 name: Deploy to GitHub Pages
 
-on:
+on:  
   push:
-    branches:
-      - main # main 브랜치에 push될 때 실행
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# concurrency 추가 (중복 배포 방지)
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+      branches: [ main ] # main 브랜치에 push될 때 실행
+  pull_request:
+      branches: [ main ]
 
 jobs:
   build-and-deploy:
-    # environment 설정 추가
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    
     permissions:
       contents: read
       pages: write
       id-token: write
-
+    
     steps:
-    - name: Checkout repository
+    - name: Checkout
       uses: actions/checkout@v4
-
+      
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 22.11.0
-        cache: 'npm'  # npm 캐시 추가
-
-    # Rollup 의존성 문제 해결을 위한 clean install
-    - name: Clean install dependencies
-      run: |
-        rm -rf node_modules package-lock.json
-        npm install
-
-    - name: Build project
+        node-version: 22.18.0 # nodejs 버전
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build
       run: npm run build
-
-    # Pages 설정 추가 (중요!)
+      
     - name: Setup Pages
       uses: actions/configure-pages@v4
-
-    - name: Upload artifact for deployment
+      
+    - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: ./dist
-
+        path: './dist'
+        
     - name: Deploy to GitHub Pages
-      id: deployment  # id 추가
+      id: deployment
       uses: actions/deploy-pages@v4
