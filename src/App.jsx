@@ -6,7 +6,7 @@ import './css/App.css';
 function App() {
   // const [counters, setCounters] = useState([0, 0, 0]); // 카운터 상태 배열
   const [counters, setCounters] = useState([100, 2]);
-  // useState() 훅에 초기값을 설정해서 내가 원하는 카운터 만들어 넣음
+  // useState() 훅에 초기값을 설정해서 내가 원하는 카운터 갯수대로 만들어 넣음
 
   // 특정 카운터 증가
   const increase = (index) => {
